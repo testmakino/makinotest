@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SAP Workflow Steps</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Sections</h2>
+      <ul>
+        <li onclick="showSection('quotation')">Quotation Process</li>
+        <li onclick="showSection('sales')">Sales Order</li>
+        <li onclick="showSection('delivery')">Outbound Delivery</li>
+      </ul>
+    </aside>
+    <main class="content">
+      <div id="quotation" class="section">
+        <h2>Quotation Process</h2>
+        <ol>
+          <li>Go to VA21 (Create Quotation).</li>
+          <li>Select Quotation Type: ZCS (Makino_Quot_Service).</li>
+          <li>Enter Organizational Data: Sales Org 1010, Dist Channel 10, Division 99, etc.</li>
+          <li>Enter Customer Reference and Date.</li>
+          <li>Fill in Material Number, Quantity, Route.</li>
+          <li>Select Incoterms, Payment Terms, and Usage.</li>
+          <li>Go to MD04/ME1M to check stock.</li>
+          <li>If needed, update lead time in VA22.</li>
+          <li>Generate and output PDF.</li>
+        </ol>
+      </div>
+
+      <div id="sales" class="section" style="display:none;">
+        <h2>Sales Order</h2>
+        <ol>
+          <li>Go to VA01 (Create Sales Document).</li>
+          <li>Enter Order Type: ZPO, Customer PO number, Requested Delivery Date.</li>
+          <li>Enter Material Number, Quantity, Plant (1012), Route.</li>
+          <li>Select Payment Terms, Incoterms.</li>
+          <li>Verify Net Price, Save to generate SO Number.</li>
+        </ol>
+      </div>
+
+      <div id="delivery" class="section" style="display:none;">
+        <h2>Outbound Delivery</h2>
+        <ol>
+          <li>Use VL01N to create outbound delivery with sales order ref.</li>
+          <li>Enter Shipping Point: 1012.</li>
+          <li>Update delivery date, print DO, and coordinate packing.</li>
+          <li>Use VL02N for PGI and airway bill update.</li>
+        </ol>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
