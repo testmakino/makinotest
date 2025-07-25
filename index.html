@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAP Workflow Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Sections</h2>
+      <ul id="sectionList"></ul>
+      <input type="text" id="newSectionInput" placeholder="New section..." />
+      <button onclick="addSection()">+ Add Section</button>
+    </aside>
+    <main class="main">
+      <div class="section-header">
+        <input id="sectionTitle" placeholder="Section Title" />
+        <textarea id="sectionDesc" placeholder="Section Description"></textarea>
+        <button onclick="addStep()">+ Add Step</button>
+      </div>
+      <div id="stepList" class="step-list"></div>
+    </main>
+  </div>
+  <script>
+const sapData = {
+  "Parts Return": [
+    { title: "Inspect Item", description: "Check the returned item for physical damage or warranty seal." },
+    { title: "Create Return Order", description: "Initiate return process in SAP by creating a return order." },
+    { title: "Update Inventory", description: "Mark item as returned in the inventory system." }
+  ],
+  "Order Processing": [
+    { title: "Verify Order", description: "Check stock availability and payment confirmation." },
+    { title: "Pick & Pack", description: "Locate products and pack them for shipping." },
+    { title: "Generate Invoice", description: "Create and attach the invoice to the package." }
+  ],
+  "Delivery Tracking": [
+    { title: "Assign Courier", description: "Select appropriate logistics partner and assign delivery task." },
+    { title: "Update Tracking ID", description: "Enter tracking ID in SAP system." },
+    { title: "Monitor Delivery", description: "Keep track of delivery status and notify customer." }
+  ],
+  "Customer Support": [
+    { title: "Log Ticket", description: "Customer raises a complaint or query." },
+    { title: "Assign Agent", description: "Assign ticket to a support agent." },
+    { title: "Resolve & Close", description: "Agent resolves issue and closes the ticket in system." }
+  ]
+};
+</script>
+  <script src="script.js"></script>
+</body>
+</html>
