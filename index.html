@@ -2,52 +2,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SAP Workflow Viewer</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Makino SAP Process Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f2f6fc;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .accordion {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      background-color: #005b96;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .steps {
+      display: none;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #ccc;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .step {
+      margin-bottom: 1.5rem;
+    }
+
+    .step h4 {
+      color: #0073e6;
+      margin-bottom: 0.3rem;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .active + .steps {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <h2>Sections</h2>
-      <ul id="sectionList"></ul>
-      <input type="text" id="newSectionInput" placeholder="New section..." />
-      <button onclick="addSection()">+ Add Section</button>
-    </aside>
-    <main class="main">
-      <div class="section-header">
-        <input id="sectionTitle" placeholder="Section Title" />
-        <textarea id="sectionDesc" placeholder="Section Description"></textarea>
-        <button onclick="addStep()">+ Add Step</button>
+
+<h1>Makino SAP Process Guide</h1>
+
+<div class="accordion">
+
+  <!-- Section: Parts Return -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">Parts Return</div>
+    <div class="steps">
+      <div class="step">
+        <h4>Step 1: Go to VA01 (Create Sales Document)</h4>
+        <p>Access the return order creation functionality through the standard sales document transaction.</p>
       </div>
-      <div id="stepList" class="step-list"></div>
-    </main>
+      <div class="step">
+        <h4>Step 2: Select ZRT (Makino Returns)</h4>
+        <p>Choose the return order type configured for the return process.</p>
+      </div>
+      <div class="step">
+        <h4>Step 3: Fill in Sales Org - 1010 (Makino Singapore)</h4>
+        <p>Enter the correct organizational data for processing.</p>
+      </div>
+      <div class="step">
+        <h4>Step 4: Complete Return Details and Save</h4>
+        <p>Include customer info, reference, reason codes, and material details.</p>
+      </div>
+    </div>
   </div>
-  <script>
-const sapData = {
-  "Parts Return": [
-    { title: "Inspect Item", description: "Check the returned item for physical damage or warranty seal." },
-    { title: "Create Return Order", description: "Initiate return process in SAP by creating a return order." },
-    { title: "Update Inventory", description: "Mark item as returned in the inventory system." }
-  ],
-  "Order Processing": [
-    { title: "Verify Order", description: "Check stock availability and payment confirmation." },
-    { title: "Pick & Pack", description: "Locate products and pack them for shipping." },
-    { title: "Generate Invoice", description: "Create and attach the invoice to the package." }
-  ],
-  "Delivery Tracking": [
-    { title: "Assign Courier", description: "Select appropriate logistics partner and assign delivery task." },
-    { title: "Update Tracking ID", description: "Enter tracking ID in SAP system." },
-    { title: "Monitor Delivery", description: "Keep track of delivery status and notify customer." }
-  ],
-  "Customer Support": [
-    { title: "Log Ticket", description: "Customer raises a complaint or query." },
-    { title: "Assign Agent", description: "Assign ticket to a support agent." },
-    { title: "Resolve & Close", description: "Agent resolves issue and closes the ticket in system." }
-  ]
-};
+
+  <!-- Section: Quotation -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">Quotation</div>
+    <div class="steps">
+      <div class="step">
+        <h4>Step 1: Go to VA21 (Create Quotation)</h4>
+        <p>Enter quotation type ZCS and sales organization data.</p>
+      </div>
+      <div class="step">
+        <h4>Step 2: Fill in Customer & Material Info</h4>
+        <p>Include reference, model, materials, quantity, etc.</p>
+      </div>
+      <div class="step">
+        <h4>Step 3: Check Stock via MD04 / ME1M</h4>
+        <p>Ensure lead time availability or update quotation accordingly.</p>
+      </div>
+      <div class="step">
+        <h4>Step 4: Save Quotation</h4>
+        <p>Generate PDF and send it to the customer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- You can add more sections below by copying this block -->
+  <!--
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">[Section Title]</div>
+    <div class="steps">
+      <div class="step">
+        <h4>Step 1: [Title]</h4>
+        <p>[Description]</p>
+      </div>
+    </div>
+  </div>
+  -->
+
+</div>
+
+<script>
+  function toggle(element) {
+    element.classList.toggle("active");
+  }
 </script>
-  <script src="script.js"></script>
+
 </body>
 </html>
