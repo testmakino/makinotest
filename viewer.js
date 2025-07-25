@@ -5,7 +5,7 @@ let pdfDoc = null,
     pageNum = 1,
     pageRendering = false,
     pageNumPending = null,
-    scale = 3,
+    scale = 4,
     canvas = document.getElementById('pdf-render'),
     ctx = canvas.getContext('2d');
 
